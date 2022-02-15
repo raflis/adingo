@@ -1,0 +1,533 @@
+@font-face
+    font-family font-light
+    font-style normal
+    src url(../fonts/Metropolis-Light.otf)
+
+@font-face
+    font-family font-regular
+    font-style normal
+    src url(../fonts/Metropolis-Regular.otf)
+
+@font-face
+    font-family font-medium
+    font-style normal
+    src url(../fonts/Metropolis-Medium.otf)
+
+@font-face
+    font-family font-semibold
+    font-style normal
+    src url(../fonts/Metropolis-SemiBold.otf)
+
+@font-face
+    font-family font-bold
+    font-style normal
+    src url(../fonts/Metropolis-Bold.otf)
+
+@font-face
+    font-family font-extrabold
+    font-style normal
+    src url(../fonts/Metropolis-ExtraBold.otf)
+
+.font-light
+	font-family font-light
+
+.font-regular
+	font-family font-regular
+
+.font-medium
+	font-family font-medium
+
+.font-semibold
+	font-family font-semibold
+
+.font-bold
+	font-family font-bold
+
+.font-extrabold
+	font-family font-extrabold
+
+.text-gray
+    color #bdbfca
+    width 1.25em
+
+.text-gray2
+    color #dddfeb
+
+.text-white2
+    color rgba(255,255,255,.6)
+
+.border-right-hidden
+    border-right hidden !important
+
+.cursor-not-allowed
+    cursor not-allowed
+
+.percentage-get
+    font-family font-bold
+    font-size .85rem
+
+body
+    margin 0px
+    font-family font-regular
+    overflow-x hidden
+    color #69707a
+    background #f2f6fc
+
+.footer
+    background #FFF
+    margin-top 20px
+    text-align center
+    padding-top 20px
+    padding-bottom 20px
+    span
+        font-size .8rem
+
+.paginacionTotal nav
+    background unset !important
+
+#change
+    label
+        font-size .85rem
+    input
+        font-size .85rem
+    button
+        font-size .85rem
+    ::placeholder
+        font-size .85rem
+#deleting
+    .modal-body
+        p.first
+            font-size 2rem
+        p.second
+            font-size .9rem
+
+table.tableD
+    display inline-table
+    overflow-x auto
+    border-radius 8px
+    margin-top 20px
+    thead
+        background rgb(101, 111, 122)
+        color #fff
+        tr
+            th
+                color #FFF
+                font-size .75rem
+                font-family font-light
+                border-top 0px
+                &:first-child
+                    border-top-left-radius 8px
+                &:last-child
+                    border-top-right-radius 8px
+    tbody
+        tr
+            background #FFF
+            &:nth-of-type(odd)
+                    background rgb(247, 247, 247)
+            &:last-child
+                border-bottom-right-radius 8px
+                border-bottom-left-radius 8px
+                td
+                    &:first-child
+                        border-bottom-left-radius 8px
+                    &:last-child
+                        border-bottom-right-radius 8px
+            td.word
+                word-break normal //break-word
+            td
+                font-size .72rem
+                padding-top .5rem
+                padding-bottom .5rem
+                border-top 0px
+                .img-user
+                    height 40px
+                    width 40px
+                    border-radius 50%
+                .progress
+                    font-size .55rem
+                    font-family font-bold
+                    .progress-bar
+                        overflow unset
+                        color #000
+                a.btn-sm
+                    font-size .72rem !important
+                    font-family font-medium
+
+nav
+    background #fff
+    .burger
+        width 3rem
+        cursor pointer
+        .linea1, .linea2, .linea3
+            width 23px
+            height 2px
+            background #69707a
+            margin 2px
+            transition all .3s ease
+        .toggle1
+            transform rotate(-45deg) translate(-3px, 3px)
+        .toggle2
+            opacity 0
+        .toggle3
+            transform rotate(45deg) translate(-3px, -3px)
+    a.nav-brand
+        width 9rem
+        color #363d47
+        text-decoration none
+        font-family font-bold
+    ul.first
+        margin-left auto
+        .lifirst
+            //width 48px
+            //height 48px
+            border-radius 50%
+            display flex
+            align-items center
+            justify-content space-around
+        li.show
+            box-shadow 0 0 .2rem 0.2rem #2128325c
+        .dropdown-toggle
+            &:after
+                display none
+        .dropdown-menu
+            position absolute !important
+            top 130%
+        .avatar
+            height 45px
+            width 45px
+            border-radius 50%
+            background-color: #21283238
+            transition all .6s ease
+            &:active, &:hover
+                box-shadow 0 0 0 0.15rem #21283238
+        .dropdown-menu.show
+            transition all .6s ease
+        .dropdown-menu
+            min-width 15rem
+            width auto
+            transition all .6s ease
+            .avatar2
+                height 45px
+                width 45px
+                border-radius 50%
+            .info
+                p
+                    &:first-child
+                        color #212832
+                        font-size .9rem
+                        margin-bottom 0px
+                    &:last-child
+                        color #69707a
+                        font-size .75rem
+                        margin-bottom 0px
+        ul.second
+            li
+                &:hover
+                    background #e0e5ec
+                a
+                    font-size .85rem
+                    color #1e242d
+                    padding-top 3px
+                    padding-bottom 3px
+
+.layout
+    display flex
+    .nav-burger-active
+        transform translateX(-100%) !important
+    .nav-burger-active-dispositivo
+        transform translateX(0%) !important
+    .layoutNav
+        margin-top 61px
+        width 15rem
+        height 100vh
+        position fixed
+        top 0
+        left 0
+        right 0
+        background #fff
+        display flex
+        flex-direction column
+        justify-content space-between
+        transform translateX(0%)
+        transition: transform .2s ease-in;
+        .sidenav-menu-heading
+            padding 1.75rem 1rem 0.75rem
+            font-size 0.7rem
+            font-family font-bold
+            text-transform uppercase
+            letter-spacing 0.05em
+            color #a7aeb8
+        .nav-link
+            color #212832
+            padding-top 0.50rem
+            padding-bottom 0.50rem
+            font-size .88rem
+            transition all .3s ease
+            i
+                padding-right 1.7rem !important
+            &:hover
+                color #0061f2
+                font-family font-regular
+        .nav-link.active
+            color #0061f2
+            font-family font-semibold
+            i
+                color rgba(0, 97, 242, .85)
+        .nav-items
+            overflow hidden
+            height 80vh
+            &:hover
+                overflow-y scroll
+        .nav-footer
+            height 25vh
+            background rgba(33, 40, 50, 0.05)
+            padding-left 1rem
+            p
+                &:nth-child(1)
+                    color #69707a
+                    font-size .75rem
+                    margin-bottom 0px
+                &:nth-child(3)
+                    color #000
+                    font-size .8rem
+                &:nth-child(2)
+                    color #212832
+                    font-size .9rem
+                    margin-bottom 0px
+                    font-family font-medium
+        ::-webkit-scrollbar
+            width .35rem
+        ::-webkit-scrollbar-track
+            background inherit
+        ::-webkit-scrollbar-thumb
+            border-radius 10rem
+            border-width 0.2rem
+            border-style solid
+            background-color rgba(33, 40, 50, 0.2)
+            border-color transparent
+    .layoutContent
+        margin-top 61px
+        width 100%
+        padding-left 15rem
+        transition: all .2s ease-in;
+        .dashboard
+            .border-start-primary
+                border-left-color #0061f2 !important
+            .border-start-success
+                border-left-color #00ac69 !important
+            .border-start-danger
+                border-left-color #e81500 !important
+            .border-start-lg
+                border-left-width 0.25rem !important
+            .small
+                font-size .875rem
+            .hx
+                font-size 1.1rem
+                color #363d47
+                font-family font-medium
+        .header-content
+            background-color #0061f2 !important
+            background-image linear-gradient(135deg, #0061f2 0%, rgba(105, 0, 199, 0.8) 100%) !important
+            padding-top 3rem
+            padding-bottom 10rem
+            h1
+                color #fff
+                font-size 2.25rem
+                font-family font-medium
+                margin-bottom 0
+            .subtitle
+                color rgba(255, 255, 255, 0.5)
+                font-size 1.15rem
+                margin-top .25rem
+        .layout-body
+            margin-top -7rem
+            padding-right .5rem
+            padding-left .5rem
+            .card
+                border-radius .5rem
+                .card-header
+                    color #0061f2
+                    font-family font-semibold
+                    display flex
+                    align-items center
+                    justify-content space-between
+                    a
+                        padding 0
+                        display inline-flex
+                        align-items stretch
+                        justify-content center
+                        .icon
+                            background rgba(0,0,0,.15)
+                            i
+                                line-height unset
+                .card-body
+                    justify-content center
+                    .labelspan
+                        width 100%
+                        font-size .8rem
+                    input[type=date]
+                        font-size .8rem
+                    input[type=text]
+                        font-size .8rem
+                    select
+                        font-size .8rem
+                    .btn-descargar
+                        font-size .8rem
+                    label
+                        font-size .85rem
+                        font-family font-medium
+                    ::placeholder
+                        font-size .8rem
+                    .alertas
+                        font-size .9rem
+                    .page-item.active
+                        span
+                            background-color #0061f2 !important
+                            border-color #0061f2 !important
+                    .buscar-descarga
+                        display flex
+                        align-items flex-end
+                        form
+                            display flex
+                            align-items flex-end
+                        .btn-buscar
+                            font-size .8rem
+        
+        .show-header
+            background #FFF
+            i
+                font-size 1rem
+            span
+                font-size 1rem   
+                font-family font-semibold
+            span.dashboard
+                font-size 2rem
+        .show-content
+            .card
+                .card-header
+                    color #0061f2
+                    font-family font-semibold
+                    display flex
+                    align-items center
+                    justify-content space-between
+                    span
+                        color #0061f2
+                        font-family font-semibold
+                .card-body
+                    label
+                        font-size .85rem
+                        font-family font-medium
+                    input
+                        font-size .85rem
+                    select
+                        font-size .85rem
+                    ::placeholder
+                        font-size .85rem
+                    .alertas
+                        font-size .9rem
+                    p
+                        margin-bottom .2rem
+                        .name
+                            color #0061f2
+                            font-family font-medium
+                        .name-text
+                            font-family font-light
+                        .name-supervisor
+                            color #d39e00
+                            font-family font-medium
+                        .name-user
+                            color #28a745
+                            font-family font-semibold
+                        .name-text-user
+                            font-family font-medium
+        .show-timeline
+            .card
+                .card-body
+                    .resume-item
+                        padding 0px 0px 20px 20px
+                        border-left 2px solid #0563bb
+                        position relative
+                        margin-top -2px
+                        &:before
+                            content ''
+                            position absolute
+                            width 16px
+                            height 16px
+                            border-radius 50px
+                            left -9px
+                            top 0
+                            background #fff
+                            border 2px solid #0563bb
+                        p
+                            margin-bottom .2rem
+                            .name
+                                color #3f51b5
+                                font-family font-semibold
+                            .name-text
+                                font-family font-light
+
+        .feedback
+            .card
+                .card-header
+                    span            
+                        color #0061f2
+                        font-family font-semibold
+
+        .profile
+            .foto
+                .card
+                    .card-body.imagen
+                        text-align center
+                        img
+                            height 180px
+                            width 180px
+                            border-radius 50%
+                        .loading-text
+                            font-size .9rem
+                            color #dc3545
+                            font-family font-bold
+                        .loading-text-success
+                            font-size .9rem
+                            color #28a745
+                            font-family font-bold
+
+@media screen and (max-width:992px)
+    table.tableD
+        display block !important
+
+@media screen and (max-width:768px)
+    table.tableD
+        .btn-sm
+            font-size .68rem !important
+        .card-body
+            label
+                font-size .9rem
+            input
+                font-size .9rem
+        
+    .layout
+        .nav-burger-active
+            transform translateX(0%) !important
+        .layoutNav
+            z-index 999
+            transform translateX(-100%)
+            .nav-items
+                overflow-y scroll !important
+        .layoutContent
+            z-index 998
+            padding-left 0rem !important
+            .header-content
+                h1
+                    font-size 1.30rem
+                .subtitle
+                    font-size 1rem
+            .show-header
+                span.dashboard
+                    font-size 1.5rem
+            .layout-body
+                margin-top -8.5rem
+                .card
+                    .card-body
+                        .buscar-descarga
+                            form
+                                display block !important

@@ -3,6 +3,11 @@
 @section('content')
 <section class="bingo">
     <img src="{{ asset('images/logo.png') }}" alt="" class="logo">
+    <div class="logout">
+        <a href="{{ route('login.logout') }}">
+            <i class="fas fa-sign-out-alt"></i>
+        </a>
+    </div>
     <div class="container-fluid">
         <div class="row justify-content-center align-items-center">
             <div class="col-md-4 text-center pt-5">
@@ -85,12 +90,14 @@
                 <p class="balota">
                     BALOTA NO.1
                 </p>
+                @if(Auth::user()->role == 0)
                 <div class="premio">
                     <img src="{{ asset('images/premio.png') }}" alt="">
                     <div class="nombre text-center" id="nuevo_numero">
-                        <span class="n_numero">Nuevo número</span>
+                        <button class="n_numero">Nuevo número</button>
                     </div>
                 </div>
+                @endif
             </div>
             <div class="col-md-4 adingo_button_">
                 <div class="adingo_button glow0">
@@ -111,17 +118,19 @@
 
 @section('script')
 
+@if(Auth::user()->role == 0)
 <script>
     $(function(){
         $('#nuevo_numero').on('click', function(e){
             $.ajax({
                 type: "POST",
-                url: '{{ route('aleatorio') }}',
+                url: '{{ route('bingo_logs.store') }}',
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 data: {
                     _token: $('meta[name="csrf-token"]').attr('content'),
+                    bingo_id : {{ $bingo->id }},
                 },
                 dataType: 'json',
                 success: function success(response) {
@@ -130,15 +139,13 @@
                         $('#'+ response).addClass('active');
                         $('.num_obtain').html(response);
                         $('.n_numero').html('Nuevo número');
+                        $('.n_numero').attr('disabled', false);
                     }
                 },
                 beforeSend: function beforeSend() {
-                    //$('.btn-submit').attr('disabled', true);
+                    $('.n_numero').attr('disabled', true);
                     $('.n_numero').html('Generando ...');
                 },
-                cache: false,
-                contentType: false,
-                processData: false,
                 error: function error(_error3, e) {
                     console.log(_error3);
                     console.log(e);
@@ -148,5 +155,6 @@
         })
     })
 </script>
+@endif
 
 @endsection

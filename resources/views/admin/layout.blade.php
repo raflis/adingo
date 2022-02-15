@@ -12,6 +12,7 @@
     <!--<link href="{{ asset('css/aos.css') }}" rel="stylesheet">-->
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
     <!--<link href="{{ asset('css/all.css') }}" rel="stylesheet">-->
+    <script src="https://kit.fontawesome.com/084224f6ac.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="loading">

@@ -15,17 +15,9 @@
                         @include('admin.includes.alert')
                     </div>
                     {!! Form::open(['route' => 'login.post', 'autocomplete' => 'off']) !!}
-
-                    <div class="form-group">
-                        {{ Form::text('name', null, ['class' => 'form-control', 'placeholder'=>'Nombres']) }}
-                    </div>
                     
                     <div class="form-group">
                         {{ Form::text('email', null, ['class' => 'form-control', 'placeholder'=>'Ingresa un email']) }}
-                    </div>
-
-                    <div class="form-group">
-                        {{ Form::text('company', null, ['class' => 'form-control', 'placeholder'=>'Empresa']) }}
                     </div>
 
                     <div class="form-group">

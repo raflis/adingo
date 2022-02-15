@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Auth;
 use Validator;
 use App\Models\Admin\Home;
+use App\Models\Admin\Bingo;
 use Illuminate\Http\Request;
+use App\Models\Admin\BingoUser;
 use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
@@ -18,7 +21,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('isadmin');
+        //$this->middleware('isadmin');
     }
     
     public function index()
@@ -31,23 +34,26 @@ class HomeController extends Controller
         return view('admin.ganador');
     }
 
-    public function bingo()
+    public function bingo($id)
     {
-        $numeros = array();
-        $max_num = 25;
-        srand(time());
-        for ($x=1; $x <= $max_num; $x++):
-            $num_aleatorio = rand(1,60);
-            array_push($numeros, $num_aleatorio);
-        endfor;
-        //return count($numeros);
-        return view('admin.bingo', compact('numeros'));
-    }
-
-    public function aleatorio(Request $request)
-    {
-        srand(time());
-        $num_aleatorio = rand(1,60);
-        return $num_aleatorio;
+        $bingo = Bingo::find($id);
+        $bingo_user = BingoUser::where('user_id', Auth::user()->id)->where('bingo_id', $id)->first();
+        if($bingo_user):
+            $numeros = $bingo_user->numbers;
+        else:
+            $numeros = array();
+            $max_num = 25;
+            srand(time());
+            for ($x=1; $x <= $max_num; $x++):
+                $num_aleatorio = rand(1,60);
+                array_push($numeros, $num_aleatorio);
+            endfor;
+            $bingouser = new Bingouser();
+            $bingouser->user_id = Auth::user()->id;
+            $bingouser->bingo_id = $id;
+            $bingouser->numbers = $numeros;
+            $bingouser->save();
+        endif;
+        return view('admin.bingo', compact('bingo', 'numeros'));
     }
 }

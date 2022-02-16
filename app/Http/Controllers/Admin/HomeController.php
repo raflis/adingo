@@ -7,6 +7,7 @@ use Validator;
 use App\Models\Admin\Home;
 use App\Models\Admin\Bingo;
 use Illuminate\Http\Request;
+use App\Models\Admin\BingoLog;
 use App\Models\Admin\BingoUser;
 use App\Http\Controllers\Controller;
 
@@ -29,14 +30,26 @@ class HomeController extends Controller
         //
     }
 
+    public function sala()
+    {
+        return view('admin.sala');
+    }
+
     public function ganador()
     {
         return view('admin.ganador');
     }
 
-    public function bingo($id)
+    public function bingo(Request $request)
     {
-        $bingo = Bingo::find($id);
+        return view('admin.bingo');
+    }
+
+    public function bingox($code)
+    {
+        $bingo = Bingo::where('code', $code)->first();
+        $id = $bingo->id;
+        $bingolog = BingoLog::where('bingo_id', $id)->pluck('number')->toArray();
         $bingo_user = BingoUser::where('user_id', Auth::user()->id)->where('bingo_id', $id)->first();
         if($bingo_user):
             $numeros = $bingo_user->numbers;
@@ -54,6 +67,6 @@ class HomeController extends Controller
             $bingouser->numbers = $numeros;
             $bingouser->save();
         endif;
-        return view('admin.bingo', compact('bingo', 'numeros'));
+        return view('admin.bingo', compact('bingo', 'numeros', 'bingolog'));
     }
 }

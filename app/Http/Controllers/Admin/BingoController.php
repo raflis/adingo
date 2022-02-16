@@ -57,6 +57,14 @@ class BingoController extends Controller
         if($validator->fails()):
             return back()->withErrors($validator)->with('message','Se ha producido un error')->with('typealert','danger')->withInput();
         else:
+            $key = '';
+            $pattern = '1234567890abcdefghijklmnopqrstuvwxyz';
+            $max = strlen($pattern) - 1;
+            for($i = 0; $i < 6; $i++):
+                $key .= $pattern[mt_rand(0, $max)];
+            endfor;
+            $code = \Carbon\Carbon::parse(now())->format('H').$key.\Carbon\Carbon::parse(now())->format('is');
+            $request->merge(['code' => $code]);
             $bingo = Bingo::create($request->all());
             return redirect()->route('bingo.index')->with('message','Creado con éxito.')->with('typealert','success');
         endif;

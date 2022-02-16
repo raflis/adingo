@@ -12,6 +12,6 @@ class Bingo extends Model
     protected $table = 'bingo';
 
     protected $fillable = [
-        'name',
+        'name', 'code',
     ];
 }

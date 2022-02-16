@@ -41,6 +41,7 @@
                                 <th>N°</th>
                                 <th>Nombre</th>
                                 <th>Url</th>
+                                <th>Código a compartir</th>
                                 <th>Fecha de creación</th>
                                 <th>Acciones</th>
                             </tr>
@@ -51,10 +52,11 @@
                                 <td>{{ $bingos->firstItem() + $loop->index }}</td>
                                 <td>{{ $bingo->name }}</td>
                                 <td>
-                                    <a class="btn btn-success text-white btn-sm mr-1" href="{{ route('bingo', $bingo->id) }}" target="_blank">
+                                    <a class="btn btn-success text-white btn-sm mr-1" href="{{ route('bingo', ['code' => $bingo->code]) }}" target="_blank">
                                         <i class="fas fa-globe"></i> Link del juego
                                     </a>
                                 </td>
+                                <td>{{ $bingo->code }}</td>
                                 <td>{!! \Carbon\Carbon::parse($bingo->created_at)->format('d/m/Y') !!}</td>
                                 <td>
                                     <div style="display: inline-flex">

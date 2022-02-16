@@ -49,7 +49,11 @@ class LoginController extends Controller
             return back()->withErrors($validator)->with('message','Se ha producido un error')->with('typealert','danger')->withInput();
         else:
             if(Auth::attempt(['email' => $request->email, 'password' => $request->password], true)):
-                return redirect()->route('bingo', 2);  
+                if(Auth::user()->role==0):
+                    return redirect()->route('admin');
+                else:
+                    return redirect()->route('sala');
+                endif;
             else:
                 return back()->with('message','Correo electrónico o contraseña erronea')->with('typealert','danger')->withInput();
             endif;

@@ -7,7 +7,7 @@
         <div class="row layout-header">
             <div class="col-sm-12 header-content">
                 <h1>
-                    <i class="fas fa-user-shield fa-xs text-white2"></i> Bingo
+                    <i class="fas fa-gamepad fa-xs text-white2"></i> Bingo
                 </h1>
                 <span class="subtitle">
                     Crear, editar y eliminar bingo.

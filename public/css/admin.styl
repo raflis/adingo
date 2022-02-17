@@ -55,6 +55,15 @@ body
 .section
     position relative
 
+.glowred
+    animation glowred 1s ease-in-out infinite alternate
+
+@-webkit-keyframes glowred
+  from
+    box-shadow 0px 0px 5px 5px rgba(239, 20, 20, 1)
+  to
+    box-shadow 0px 0px 5px 9px rgba(239, 20, 20, 1)
+
 .glow0
     animation glow0 1s ease-in-out infinite alternate
 
@@ -97,6 +106,22 @@ body
     .arrow
         &:before
             border-top-color #fff !important
+
+.alert
+    box-shadow 0 .5rem 1rem rgba(0,0,0,.5)!important
+    //display none
+    p.tit
+        font-size .85rem !important
+        padding 0 !important
+        line-height 1.3 !important
+        color inherit !important
+        margin 0 !important
+    p.name
+        font-size .8rem !important
+        padding 0 !important
+        line-height 1.3 !important
+        color inherit !important
+        margin 0 !important
 
 .loading
     position fixed
@@ -226,9 +251,13 @@ img.adingo0
             p
                 color #00ffff
                 text-shadow 0 0 1px #fff, 0 0 10px #00ffff, 0 0 2px #00ffff
-                font-size 4rem
+                font-size 2.8rem
+                text-align center
                 margin 0
                 line-height 1.3
+                font-family font-extrabold
+                span
+                    font-family font-regular
             .nombre
                 padding-top 40px
                 padding-bottom 70px
@@ -254,7 +283,7 @@ img.adingo0
                 margin 0
 
 .bingo
-    height 120vh
+    //height 120vh
     background-image url('../images/fondo3.jpg')
     background-position center
     background-size cover
@@ -278,14 +307,16 @@ img.adingo0
         padding-left 70px
         img
             height 150px
+            margin-top -90px
     .content
         margin-top -50px
         display flex
         align-items center
         img.adobe-v
             height 200px
+            margin-right -17px
         img.line1
-            height 250px
+            height 230px
         .numbers
             display flex
             flex-wrap wrap
@@ -318,6 +349,8 @@ img.adingo0
         font-size .8rem
         text-align left
         padding-left 120px
+        padding-left 90px
+        margin-top -10px
     .cartilla
         border 5px solid #00ffff
         padding 3px
@@ -338,7 +371,12 @@ img.adingo0
             flex-wrap wrap
             margin-top -13px
             width 250px
+            .active
+                background-color #00ffff
+                span
+                    color #000 !important
             .number
+                cursor pointer
                 height 50px
                 width 50px
                 display flex
@@ -389,11 +427,16 @@ img.adingo0
             text-shadow 0 0 1px #fff, 0 0 10px #0ff, 0 0 2px #0ff
             letter-spacing 7px
         .premio
-            margin-top -30px
+            margin-top 0px
             img
                 height 150px
+            .generando
+                margin-left 1rem !important
+                margin-top 0rem !important
+                margin-bottom 0rem !important
             .nombre
-                margin-top -35px
+                margin-top 10px
+                margin-bottom 10px
                 cursor pointer
                 button
                     background-color transparent
@@ -405,6 +448,16 @@ img.adingo0
                     padding 5px 25px
                     box-shadow 0 0.1rem 1rem rgba(239, 20, 20, .7) !important
                     text-shadow 0 0 1px #fff, 0 0 10px #fff, 0 0 2px #fff
+                button.mostrar_ganador
+                    background-color transparent
+                    color #fff
+                    font-family font-extrabold
+                    font-size 1rem
+                    border-radius 30px
+                    border 5px solid rgba(56, 194, 114, 1)
+                    padding 2px 20px
+                    box-shadow 0 0.1rem 1rem rgba(56, 194, 114, .7) !important
+                    text-shadow 0 0 1px #fff, 0 0 12px #fff, 0 0 1px #fff
     .adingo_button_
         display flex
         flex-direction column
@@ -437,6 +490,29 @@ img.adingo0
                 padding 0
                 text-shadow 0 0 1px #fff, 0 0 10px #0ff, 0 0 2px #0ff
                 letter-spacing 7px
+    .ganador_user_
+        .ganador_user
+            p
+                margin-bottom 50px
+                line-height 1.3
+                color #00ffff
+                font-size 1.4rem
+                font-family font-medium
+                text-align center !important
+                padding 0
+                text-shadow 0 0 1px #fff, 0 0 10px #0ff, 0 0 2px #0ff
+                letter-spacing 7px
+                text-align center
+                span
+                    font-family font-extrabold
+            button
+                border-radius 12px
+                background-color rgba(239, 20, 20, 1)
+                border 0
+                color #FFF
+                font-size 1.1rem
+                font-family font-bold
+                padding 1px 30px
 
 @media screen and (max-width:768px)
     .gracias

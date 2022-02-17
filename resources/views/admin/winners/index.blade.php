@@ -7,10 +7,10 @@
         <div class="row layout-header">
             <div class="col-sm-12 header-content">
                 <h1>
-                    <i class="fas fa-gamepad fa-xs text-white2"></i> Bingo
+                    <i class="fas fa-trophy fa-xs text-white2"></i> Ganadores
                 </h1>
                 <span class="subtitle">
-                    Crear, editar y eliminar bingo.
+                    Crear, editar y eliminar.
                 </span>
             </div>
         </div>
@@ -19,9 +19,9 @@
                 <div class="card shadow">
                     <div class="card-header">
                         <span>
-                            Bingo
+                            Ganadores
                         </span>
-                        <a class="btn btn-success" href="{{ route('bingo.create') }}">
+                        <a class="btn btn-success" href="{{ route('winners.create') }}">
                             <span class="icon">
                                 <i class="fas fa-plus px-2 py-1"></i>
                             </span>
@@ -39,33 +39,33 @@
                         <thead>
                             <tr>
                                 <th>N°</th>
-                                <th>Nombre</th>
-                                <th>Url</th>
-                                <th>Código a compartir</th>
-                                <th>¿Tiene ganador?</th>
+                                <th>Ganador</th>
+                                <th>Bingo</th>
+                                <th>Código de Sala</th>
+                                <th>Url del ganador</th>
                                 <th>Fecha de creación</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($bingos as $bingo)
+                            @foreach ($winners as $winner)
                             <tr>
-                                <td>{{ $bingos->firstItem() + $loop->index }}</td>
-                                <td>{{ $bingo->name }}</td>
+                                <td>{{ $winners->firstItem() + $loop->index }}</td>
+                                <td>{{ $winner->user->name.' '.$winner->user->lastname }}</td>
+                                <td>{{ $winner->bingo->name }}</td>
+                                <td>{{ $winner->bingo->code }}</td>
                                 <td>
-                                    <a class="btn btn-success text-white btn-sm mr-1" href="{{ route('bingo', ['code' => $bingo->code]) }}" target="_blank">
-                                        <i class="fas fa-globe"></i> Link del juego
+                                    <a class="btn btn-success text-white btn-sm mr-1" href="{{ route('ganador.index', $winner->id) }}" target="_blank">
+                                        <i class="fas fa-globe"></i> Url ganador
                                     </a>
                                 </td>
-                                <td>{{ $bingo->code }}</td>
-                                <td>{{ ($bingo->winner)?$bingo->winner->user->name.' '.$bingo->winner->user->lastname:'No' }}</td>
-                                <td>{!! \Carbon\Carbon::parse($bingo->created_at)->format('d/m/Y H:i:s') !!}</td>
+                                <td>{!! \Carbon\Carbon::parse($winner->created_at)->format('d/m/Y H:i:s') !!}</td>
                                 <td>
                                     <div style="display: inline-flex">
-                                        <a class="btn btn-primary text-white btn-sm mr-1" href="{{ route('bingo.edit', $bingo->id) }}">
+                                        <a class="btn btn-primary text-white btn-sm mr-1" href="{{ route('winners.edit', $winner->id) }}">
                                             <i class="far fa-edit pr-1"></i> Editar
                                         </a>
-                                        <a class="btn btn-danger btn-sm btn-eliminar" href="" ideliminar="{{ $bingo->id }}"><i class="far fa-trash-alt pr-1"></i> Eliminar</a>
+                                        <a class="btn btn-danger btn-sm btn-eliminar" href="" ideliminar="{{ $winner->id }}"><i class="far fa-trash-alt pr-1"></i> Eliminar</a>
                                     </div>
                                 </td>
                             </tr>
@@ -74,7 +74,7 @@
                     </table>
                 </div>
                 <div class="paginacionTotal d-flex justify-content-end">
-                    {{ $bingos->withQueryString()->render() }}
+                    {{ $winners->withQueryString()->render() }}
                 </div>
             </div>
         </div>
@@ -95,7 +95,7 @@
         </div>
         <div class="modal-footer justify-content-center">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-            {!! Form::open(['route' => ['bingo.destroy', ''], 'method' => 'DELETE', 'id' => 'form-eliminar']) !!}
+            {!! Form::open(['route' => ['winners.destroy', ''], 'method' => 'DELETE', 'id' => 'form-eliminar']) !!}
                 <button class="btn btn-danger">
                     Sí, eliminar
                 </button>                           
@@ -113,7 +113,7 @@ $('document').ready(function(){
     $('.btn-eliminar').click(function(e){
         e.preventDefault();
         var id = $(this).attr('ideliminar');
-        var base = '{{ route('bingo.destroy', '') }}';
+        var base = '{{ route('winners.destroy', '') }}';
         var url = base + '/' +id;
         $('#form-eliminar').attr('action', url);
         $('#deleting').modal('show');

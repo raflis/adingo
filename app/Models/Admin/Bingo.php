@@ -14,4 +14,9 @@ class Bingo extends Model
     protected $fillable = [
         'name', 'code',
     ];
+
+    public function winner()
+    {
+        return $this->belongsTo(Winner::class, 'id', 'bingo_id');
+    }
 }

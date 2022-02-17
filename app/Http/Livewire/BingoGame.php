@@ -3,8 +3,10 @@
 namespace App\Http\Livewire;
 
 use Auth;
+use App\Models\User;
 use Livewire\Component;
 use App\Models\Admin\Bingo;
+use App\Models\Admin\Winner;
 use App\Models\Admin\BingoLog;
 use App\Models\Admin\BingoUser;
 
@@ -12,6 +14,7 @@ class BingoGame extends Component
 {
     public $code;
     public $bingo;
+    public $winner, $winnerF;
     public $numeros;
     public $bingolog;
     public $id_bingo;
@@ -25,15 +28,27 @@ class BingoGame extends Component
     public $num_aleatorio_new0;
     public $numero_obtenido = "??";
     public $nombre_bingo;
+    public $nombre_ganador = "", $id_bingo_unico, $id_nombre_ganador;
+    public $ganador_final = "";
+    public $winner_id;
 
-    protected $listeners = ['enviarAleatorio'];
+    public $numberClicked;
+    public $clave;
+
+    protected $listeners = ['enviarAleatorio' ,'enviarNombre'];
 
     public function mount()
     {
         $this->numeros = [];
+        $this->numberClicked = [];
         $this->code = request()->query('code', $this->code);
 
         $this->bingo = Bingo::where('code', $this->code)->first();
+        $this->winner = Winner::where('bingo_id', $this->bingo->id)->first();
+        if($this->winner):
+            $this->winnerF = User::find($this->winner->user_id);
+            $this->ganador_final = $this->winnerF->name.' '.$this->winnerF->lastname;
+        endif;
         $this->nombre_bingo = $this->bingo->name;
         $this->id_bingo = $this->bingo->id;
         $this->bingolog = BingoLog::where('bingo_id', $this->id_bingo)->pluck('number')->toArray();
@@ -57,6 +72,15 @@ class BingoGame extends Component
         endif;
     }
 
+    public function SetClicked($numClicked)
+    {
+        if(($this->clave = array_search($numClicked, $this->numberClicked)) !== false):
+            unset($this->numberClicked[$this->clave]);
+        else:
+            array_push($this->numberClicked, $numClicked); 
+        endif;
+    }
+
     public function generarNumero()
     {
         srand(time());
@@ -66,8 +90,8 @@ class BingoGame extends Component
             'bingo_id' => $this->id_bingo,
             'number' => $this->num_aleatorio_new
         ]);
-        $this->emit('aleatorio', $this->num_aleatorio_new);
 
+        //$this->emit('aleatorio', $this->num_aleatorio_new);
         event(new \App\Events\SentNumber($this->num_aleatorio_new));
     }
 
@@ -76,6 +100,39 @@ class BingoGame extends Component
         $num_aleatorio_new0 = $num_aleatorio_new0['numero'];
         $this->bingolog[] = $num_aleatorio_new0;
         $this->numero_obtenido = $num_aleatorio_new0;
+        $this->nombre_ganador = "";
+    }
+
+    public function enviarMiNombre($nombre_, $user_id_, $bingo_)
+    {
+        $this->nombre_ganador = $nombre_;
+        $this->id_nombre_ganador = $user_id_;
+        $this->id_bingo_unico = $bingo_;
+        //$this->emit('nombrePosible', $this->nombre_ganador, $this->id_bingo_unico);
+        event(new \App\Events\SentName($this->nombre_ganador, $this->id_nombre_ganador, $this->id_bingo_unico));
+    }
+
+    public function enviarNombre($data0)
+    {
+        $this->nombre_ganador = $data0['name'];
+        $this->id_nombre_ganador = $data0['user_id'];
+        $this->id_bingo_unico = $data0['bingo_id'];
+    }
+
+    public function enviarGanador()
+    {
+        $this->winner = Winner::where('bingo_id', $this->bingo->id)->first();
+        if($this->winner):
+            $this->winnerF = User::find($this->winner->user_id);
+            $this->ganador_final = $this->winnerF->name.' '.$this->winnerF->lastname;
+            event(new \App\Events\SentWinner($this->ganador_final, $this->winner->id));
+        endif;
+    }
+
+    public function enviarGanadorFinal($data_w)
+    {
+        $this->ganador_final = $data_w['ganador_final_nombre'];
+        $this->winner_id = $data_w['winner_id'];
     }
 
     public function render()

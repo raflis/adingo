@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use Validator;
-use Illuminate\Http\Request;
+use App\Models\User;
 use App\Models\Admin\Bingo;
+use App\Models\Admin\Winner;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
-class BingoController extends Controller
+class WinnerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,8 +26,8 @@ class BingoController extends Controller
 
     public function index()
     {
-        $bingos = Bingo::orderBy('id','Desc')->paginate();
-        return view('admin.bingo.index', compact('bingos'));
+        $winners = Winner::orderBy('id','Desc')->paginate();
+        return view('admin.winners.index', compact('winners'));
     }
 
     /**
@@ -34,7 +37,9 @@ class BingoController extends Controller
      */
     public function create()
     {
-        return view('admin.bingo.create');
+        $bingos = Bingo::orderBy('name', 'Asc')->pluck('name', 'id');
+        $users = User::select('id', DB::raw("concat(name, ' ', lastname) as full_name"))->orderBy('name', 'Asc')->pluck('full_name', 'id');
+        return view('admin.winners.create', compact('bingos', 'users'));
     }
 
     /**
@@ -46,27 +51,21 @@ class BingoController extends Controller
     public function store(Request $request)
     {
         $rules=[
-            'name' => 'required',
+            'bingo_id' => 'required',
+            'user_id' => 'required',
         ];
 
         $messages=[
-            'name.required' => 'Ingrese un nombre',
+            'bingo_id.required' => 'Seleccione una sala de bingo',
+            'user_id.required' => 'Seleccione un usuario',
         ];
 
         $validator=Validator::make($request->all(), $rules, $messages);
         if($validator->fails()):
             return back()->withErrors($validator)->with('message','Se ha producido un error')->with('typealert','danger')->withInput();
         else:
-            $key = '';
-            $pattern = '1234567890abcdefghijklmnopqrstuvwxyz';
-            $max = strlen($pattern) - 1;
-            for($i = 0; $i < 6; $i++):
-                $key .= $pattern[mt_rand(0, $max)];
-            endfor;
-            $code = \Carbon\Carbon::parse(now())->format('H').$key.\Carbon\Carbon::parse(now())->format('is');
-            $request->merge(['code' => $code]);
-            $bingo = Bingo::create($request->all());
-            return redirect()->route('bingo.index')->with('message','Creado con éxito.')->with('typealert','success');
+            $winner = Winner::create($request->all());
+            return redirect()->route('winners.index')->with('message','Creado con éxito.')->with('typealert','success');
         endif;
     }
 
@@ -89,8 +88,10 @@ class BingoController extends Controller
      */
     public function edit($id)
     {
-        $bingo = Bingo::find($id);
-        return view('admin.bingo.edit', compact('bingo'));
+        $bingos = Bingo::orderBy('name', 'Asc')->pluck('name', 'id');
+        $users = User::select('id', DB::raw("concat(name, ' ', lastname) as full_name"))->orderBy('name', 'Asc')->pluck('full_name', 'id');
+        $winner = Winner::find($id);
+        return view('admin.winners.edit', compact('winner', 'bingos', 'users'));
     }
 
     /**
@@ -103,20 +104,22 @@ class BingoController extends Controller
     public function update(Request $request, $id)
     {
         $rules=[
-            'name' => 'required',
+            'bingo_id' => 'required',
+            'user_id' => 'required',
         ];
 
         $messages=[
-            'name.required' => 'Ingrese un nombre',
+            'bingo_id.required' => 'Seleccione una sala de bingo',
+            'user_id.required' => 'Seleccione un usuario',
         ];
 
         $validator=Validator::make($request->all(), $rules, $messages);
         if($validator->fails()):
             return back()->withErrors($validator)->with('message','Se ha producido un error')->with('typealert','danger')->withInput();
         else:
-            $bingo = Bingo::find($id);
-            $bingo->fill($request->all())->save();
-            return redirect()->route('bingo.index')->with('message','Actualizado con éxito.')->with('typealert','success');
+            $winner = Winner::find($id);
+            $winner->fill($request->all())->save();
+            return redirect()->route('winners.index')->with('message','Actualizado con éxito.')->with('typealert','success');
         endif;
     }
 
@@ -128,7 +131,7 @@ class BingoController extends Controller
      */
     public function destroy($id)
     {
-        $bingo = Bingo::find($id)->delete();
+        $winner = Winner::find($id)->delete();
         return back()->with('message', 'Eliminado correctamente')->with('typealert','success');
     }
 }

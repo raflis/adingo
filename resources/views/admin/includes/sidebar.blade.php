@@ -13,7 +13,11 @@
         </a>
         <a class="nav-link @if(Route::currentRouteName()=="bingo.index" || Route::currentRouteName()=="bingo.edit" || Route::currentRouteName()=="bingo.create") active @endif" 
         href="{{ route('bingo.index') }}">
-            <i class="fas fa-user-shield text-gray pr-1"></i> Bingo
+            <i class="fas fa-gamepad text-gray pr-1"></i> Bingo
+        </a>
+        <a class="nav-link @if(Route::currentRouteName()=="winners.index" || Route::currentRouteName()=="winners.edit" || Route::currentRouteName()=="winners.create") active @endif" 
+        href="{{ route('winners.index') }}">
+            <i class="fas fa-trophy text-gray pr-1"></i> Ganadores
         </a>
 
 

@@ -39,8 +39,13 @@ class BingoSala extends Component
 
         $bingo = Bingo::where('code', $this->nombre)->first();
         if($bingo):
-            $this->respuesta = 'si';
-            $this->code = $bingo->code;
+            if($bingo->winner):
+                $this->respuesta ="ganador";
+                $this->code = $bingo->winner->id;
+            else:
+                $this->respuesta = 'si';
+                $this->code = $bingo->code;
+            endif;
         else:
             $this->respuesta = 'no';
         endif;

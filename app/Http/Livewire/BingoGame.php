@@ -60,10 +60,12 @@ class BingoGame extends Component
             $this->numeros = array();
             $this->max_num = 25;
             srand(time());
-            for ($this->x = 1; $this->x <= $this->max_num; $this->x++):
+            while (count($this->numeros) < 25):
                 $this->num_aleatorio = rand(1,60);
-                array_push($this->numeros, $this->num_aleatorio);
-            endfor;
+                if(!in_array($this->num_aleatorio, $this->numeros)):
+                    array_push($this->numeros, $this->num_aleatorio);
+                endif;
+            endwhile;
             $this->bingouser = new Bingouser();
             $this->bingouser->user_id = Auth::user()->id;
             $this->bingouser->bingo_id = $this->id_bingo;

@@ -48,10 +48,22 @@
             </div>
             <div class="col-md-4 d-flex justify-content-end">
                 <div class="cartilla">
-                    <div class="image">
-                        <img src="{{ asset('images/adingo_card0.png') }}" alt="">
-                    </div>
                     <div class="numbers">
+                            <div class="number number_tit">
+                                <span>A</span>
+                            </div>
+                            <div class="number number_tit">
+                                <span>D</span>
+                            </div>
+                            <div class="number number_tit">
+                                <span>O</span>
+                            </div>
+                            <div class="number number_tit">
+                                <span>B</span>
+                            </div>
+                            <div class="number number_tit end_right">
+                                <span>E</span>
+                            </div>
                         @foreach ($numeros as $num)
                             @if($loop->index == 4 || $loop->index == 9 || $loop->index == 14 || $loop->index == 19)
                             <div class="number end_right @if(in_array($num, $numberClicked)) active @endif" wire:click="SetClicked({{ $num }})">

@@ -31,6 +31,8 @@ class BingoGame extends Component
     public $nombre_ganador = "", $id_bingo_unico, $id_nombre_ganador;
     public $ganador_final = "";
     public $winner_id;
+    public $repe = false;
+    public $contador;
 
     public $numberClicked;
     public $clave;
@@ -53,6 +55,7 @@ class BingoGame extends Component
         $this->id_bingo = $this->bingo->id;
         $this->bingolog = BingoLog::where('bingo_id', $this->id_bingo)->pluck('number')->toArray();
         $this->numeros_aleatorios_game = $this->bingolog;
+        $this->contador = count($this->bingolog);
         $this->bingo_user = BingoUser::where('user_id', Auth::user()->id)->where('bingo_id', $this->id_bingo)->first();
         if($this->bingo_user):
             $this->numeros = $this->bingo_user->numbers;
@@ -60,8 +63,32 @@ class BingoGame extends Component
             $this->numeros = array();
             $this->max_num = 25;
             srand(time());
-            while (count($this->numeros) < 25):
-                $this->num_aleatorio = rand(1,60);
+            while (count($this->numeros) >=0 && count($this->numeros) < 5):
+                $this->num_aleatorio = mt_rand(1,15);
+                if(!in_array($this->num_aleatorio, $this->numeros)):
+                    array_push($this->numeros, $this->num_aleatorio);
+                endif;
+            endwhile;
+            while (count($this->numeros) >=5 && count($this->numeros) < 10):
+                $this->num_aleatorio = mt_rand(16,30);
+                if(!in_array($this->num_aleatorio, $this->numeros)):
+                    array_push($this->numeros, $this->num_aleatorio);
+                endif;
+            endwhile;
+            while (count($this->numeros) >=10 && count($this->numeros) < 15):
+                $this->num_aleatorio = mt_rand(31,45);
+                if(!in_array($this->num_aleatorio, $this->numeros)):
+                    array_push($this->numeros, $this->num_aleatorio);
+                endif;
+            endwhile;
+            while (count($this->numeros) >=15 && count($this->numeros) < 20):
+                $this->num_aleatorio = rand(46,60);
+                if(!in_array($this->num_aleatorio, $this->numeros)):
+                    array_push($this->numeros, $this->num_aleatorio);
+                endif;
+            endwhile;
+            while (count($this->numeros) >=20 && count($this->numeros) < 25):
+                $this->num_aleatorio = rand(61,75);
                 if(!in_array($this->num_aleatorio, $this->numeros)):
                     array_push($this->numeros, $this->num_aleatorio);
                 endif;
@@ -83,15 +110,38 @@ class BingoGame extends Component
         endif;
     }
 
+    public function validarNum($num)
+    {
+        $this->repe = false;
+        if(in_array($num, $this->bingolog)):
+            $this->repe = true;
+        endif;
+        return $this->repe;
+    }
+
     public function generarNumero()
     {
         srand(time());
-        $this->num_aleatorio_new = rand(1,60);
-        $this->bingolog[] = $this->num_aleatorio_new;
-        BingoLog::create([
-            'bingo_id' => $this->id_bingo,
-            'number' => $this->num_aleatorio_new
-        ]);
+        $this->repe = false;
+        
+        while($this->repe == false):
+            if($this->contador < 75):
+                $this->num_aleatorio_new = mt_rand(1,75);
+                if(!in_array($this->num_aleatorio_new, $this->bingolog)):
+                    $this->repe = true;
+                    $this->bingolog[] = $this->num_aleatorio_new;
+                    BingoLog::create([
+                        'bingo_id' => $this->id_bingo,
+                        'number' => $this->num_aleatorio_new
+                    ]);
+                endif;
+            else:
+                $this->repe = true;
+                $this->num_aleatorio_new = ':(';
+            endif;
+        endwhile;
+
+        $this->contador ++;
 
         //$this->emit('aleatorio', $this->num_aleatorio_new);
         event(new \App\Events\SentNumber($this->num_aleatorio_new));

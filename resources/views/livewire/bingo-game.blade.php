@@ -2,12 +2,12 @@
 
     <div class="container-fluid">
         <div class="row justify-content-center align-items-center">
-            <div class="col-md-12 text-center mt-3">
+            <div class="col-md-12 text-center titulo_bingo_">
                 <span class="titulo_bingo">
                     {{ $nombre_bingo }}
                 </span>
             </div>
-            <div class="col-md-4 text-center pt-5">
+            <div class="col-md-4 text-center">
                 <img class="adingo11" src="{{ asset('images/adingo.png') }}" alt="">
             </div>
             <div class="col-md-8">
@@ -15,11 +15,27 @@
                     <img src="{{ asset('images/instructivo.png') }}" alt="">
                 </div>
                 <div class="content">
-                    <img class="adobe-v" src="{{ asset('images/adobe-v.png') }}" alt="">
+                    <div class="name">
+                        <div class="number_name">
+                            <span>A</span>
+                        </div>
+                        <div class="number_name">
+                            <span>D</span>
+                        </div>
+                        <div class="number_name">
+                            <span>O</span>
+                        </div>
+                        <div class="number_name">
+                            <span>B</span>
+                        </div>
+                        <div class="number_name">
+                            <span>E</span>
+                        </div>
+                    </div>
                     <img class="line1" src="{{ asset('images/line1.png') }}" alt="">
                     <div class="numbers">
-                        @for ($i = 1; $i <= 45; $i++)
-                            @if ($i == 15 || $i == 30 || $i == 45)
+                        @for ($i = 1; $i <= 60; $i++)
+                            @if ($i == 15 || $i == 30 || $i == 45 || $i == 60)
                             <div class="number end_right @if(in_array($i, $bingolog)) active @endif" id="{{ $i }}">
                                 <span>{{ $i }}</span>
                             </div>
@@ -29,8 +45,8 @@
                             </div>
                             @endif
                         @endfor
-                        @for ($i = 46; $i <= 60; $i++)
-                            @if ($i == 60)
+                        @for ($i = 61; $i <= 75; $i++)
+                            @if ($i == 75)
                             <div class="number end_right last_row @if(in_array($i, $bingolog)) active @endif" id="{{ $i }}">
                                 <span>{{ $i }}</span>
                             </div>
@@ -43,49 +59,51 @@
                     </div>
                 </div>
                 <p>
-                    *Nota: Las balotas resaltadas son las que ya han salido.
+                    *Nota: Las bolas resaltadas son las que ya han salido.
                 </p>
             </div>
             <div class="col-md-4 d-flex justify-content-end">
                 <div class="cartilla">
                     <div class="numbers">
-                            <div class="number number_tit">
-                                <span>A</span>
-                            </div>
-                            <div class="number number_tit">
-                                <span>D</span>
-                            </div>
-                            <div class="number number_tit">
-                                <span>O</span>
-                            </div>
-                            <div class="number number_tit">
-                                <span>B</span>
-                            </div>
-                            <div class="number number_tit end_right">
-                                <span>E</span>
-                            </div>
+                        <div class="number number_tit">
+                            <span>A</span>
+                        </div>
+                        <div class="number number_tit">
+                            <span>D</span>
+                        </div>
+                        <div class="number number_tit">
+                            <span>O</span>
+                        </div>
+                        <div class="number number_tit">
+                            <span>B</span>
+                        </div>
+                        <div class="number number_tit end_right">
+                            <span>E</span>
+                        </div>
+                    </div>
+                    <div class="numbers_v">
                         @foreach ($numeros as $num)
-                            @if($loop->index == 4 || $loop->index == 9 || $loop->index == 14 || $loop->index == 19)
-                            <div class="number end_right @if(in_array($num, $numberClicked)) active @endif" wire:click="SetClicked({{ $num }})">
-                                <span>{{ $num }}</span>
-                            </div>
-                            @elseif($loop->index == 12)
-                            <div class="number">
-                                <span><img class="a" src="{{ asset('images/a.png') }}" alt=""></span>
-                            </div>
-                            @elseif($loop->index == 24)
-                            <div class="number last_row end_right @if(in_array($num, $numberClicked)) active @endif" wire:click="SetClicked({{ $num }})">
-                                <span>{{ $num }}</span>
-                            </div>
-                            @elseif($loop->index >= 20)
-                            <div class="number last_row @if(in_array($num, $numberClicked)) active @endif" wire:click="SetClicked({{ $num }})">
-                                <span>{{ $num }}</span>
-                            </div>
-                            @else
-                            <div class="number @if(in_array($num, $numberClicked)) active @endif" wire:click="SetClicked({{ $num }})">
-                                <span>{{ $num }}</span>
-                            </div>
-                            @endif
+                        @if($loop->index == 20 || $loop->index == 21 || $loop->index == 22 || $loop->index == 23)
+                        <div class="number_v end_right @if(in_array($num, $numberClicked)) active @endif" wire:click="SetClicked({{ $num }})">
+                            <span>{{ $num }}</span>
+                        </div>
+                        @elseif($loop->index == 12)
+                        <div class="number_v">
+                            <span><img class="a" src="{{ asset('images/a.png') }}" alt=""></span>
+                        </div>
+                        @elseif($loop->index == 24)
+                        <div class="number_v last_row end_right @if(in_array($num, $numberClicked)) active @endif" wire:click="SetClicked({{ $num }})">
+                            <span>{{ $num }}</span>
+                        </div>
+                        @elseif($loop->index == 4 || $loop->index == 9 || $loop->index == 14 || $loop->index == 19)
+                        <div class="number_v last_row @if(in_array($num, $numberClicked)) active @endif" wire:click="SetClicked({{ $num }})">
+                            <span>{{ $num }}</span>
+                        </div>
+                        @else
+                        <div class="number_v @if(in_array($num, $numberClicked)) active @endif" wire:click="SetClicked({{ $num }})">
+                            <span>{{ $num }}</span>
+                        </div>
+                        @endif
                         @endforeach
                     </div>
                 </div>
@@ -103,13 +121,13 @@
                     </button>
                 </div>
                 @endif
-                <div class="number_random glow0">
+                <div class="number_random glow0_blue">
                     <span class="num_obtain">
                         {{ $numero_obtenido }}
                     </span>
                 </div>
                 <p class="balota">
-                    BALOTA N°
+                    BOLA N°
                 </p>
                 @if(Auth::user()->role == 0)
                 <div class="premio">
@@ -171,11 +189,10 @@
     </script>
 
     <script>
-        // Enable pusher logging - don't include this in production
         Pusher.logToConsole = true;
 
         var pusher = new Pusher('f1297f7c3d20bb442ecc', {
-        cluster: 'us2'
+            cluster: 'us2'
         });
 
         var channel0 = pusher.subscribe('bingo-channel');

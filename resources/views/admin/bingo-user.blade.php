@@ -18,11 +18,27 @@
                     <img src="{{ asset('images/instructivo.png') }}" alt="">
                 </div>
                 <div class="content">
-                    <img class="adobe-v" src="{{ asset('images/adobe-v.png') }}" alt="">
+                    <div class="name">
+                        <div class="number_name">
+                            <span>A</span>
+                        </div>
+                        <div class="number_name">
+                            <span>D</span>
+                        </div>
+                        <div class="number_name">
+                            <span>O</span>
+                        </div>
+                        <div class="number_name">
+                            <span>B</span>
+                        </div>
+                        <div class="number_name">
+                            <span>E</span>
+                        </div>
+                    </div>
                     <img class="line1" src="{{ asset('images/line1.png') }}" alt="">
                     <div class="numbers">
-                        @for ($i = 1; $i <= 45; $i++)
-                            @if ($i == 15 || $i == 30 || $i == 45)
+                        @for ($i = 1; $i <= 60; $i++)
+                            @if ($i == 15 || $i == 30 || $i == 45 || $i == 60)
                             <div class="number end_right @if(in_array($i, $bingolog)) active @endif" id="{{ $i }}">
                                 <span>{{ $i }}</span>
                             </div>
@@ -32,8 +48,8 @@
                             </div>
                             @endif
                         @endfor
-                        @for ($i = 46; $i <= 60; $i++)
-                            @if ($i == 60)
+                        @for ($i = 61; $i <= 75; $i++)
+                            @if ($i == 75)
                             <div class="number end_right last_row @if(in_array($i, $bingolog)) active @endif" id="{{ $i }}">
                                 <span>{{ $i }}</span>
                             </div>
@@ -67,28 +83,30 @@
                         <div class="number number_tit end_right">
                             <span>E</span>
                         </div>
+                    </div>
+                    <div class="numbers_v">
                         @foreach ($numeros as $num)
-                            @if($loop->index == 4 || $loop->index == 9 || $loop->index == 14 || $loop->index == 19)
-                            <div class="number end_right @if(in_array($num, $bingolog)) active @endif">
-                                <span>{{ $num }}</span>
-                            </div>
-                            @elseif($loop->index == 12)
-                            <div class="number">
-                                <span><img class="a" src="{{ asset('images/a.png') }}" alt=""></span>
-                            </div>
-                            @elseif($loop->index == 24)
-                            <div class="number last_row end_right @if(in_array($num, $bingolog)) active @endif">
-                                <span>{{ $num }}</span>
-                            </div>
-                            @elseif($loop->index >= 20)
-                            <div class="number last_row @if(in_array($num, $bingolog)) active @endif">
-                                <span>{{ $num }}</span>
-                            </div>
-                            @else
-                            <div class="number @if(in_array($num, $bingolog)) active @endif">
-                                <span>{{ $num }}</span>
-                            </div>
-                            @endif
+                        @if($loop->index == 20 || $loop->index == 21 || $loop->index == 22 || $loop->index == 23)
+                        <div class="number_v end_right @if(in_array($num, $bingolog)) active @endif">
+                            <span>{{ $num }}</span>
+                        </div>
+                        @elseif($loop->index == 12)
+                        <div class="number_v">
+                            <span><img class="a" src="{{ asset('images/a.png') }}" alt=""></span>
+                        </div>
+                        @elseif($loop->index == 24)
+                        <div class="number_v last_row end_right @if(in_array($num, $bingolog)) active @endif">
+                            <span>{{ $num }}</span>
+                        </div>
+                        @elseif($loop->index == 4 || $loop->index == 9 || $loop->index == 14 || $loop->index == 19)
+                        <div class="number_v last_row @if(in_array($num, $bingolog)) active @endif">
+                            <span>{{ $num }}</span>
+                        </div>
+                        @else
+                        <div class="number_v @if(in_array($num, $bingolog)) active @endif">
+                            <span>{{ $num }}</span>
+                        </div>
+                        @endif
                         @endforeach
                     </div>
                 </div>

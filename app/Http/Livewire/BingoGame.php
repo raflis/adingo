@@ -137,7 +137,7 @@ class BingoGame extends Component
                 endif;
             else:
                 $this->repe = true;
-                $this->num_aleatorio_new = ':(';
+                $this->num_aleatorio_new = 'Fin';
             endif;
         endwhile;
 

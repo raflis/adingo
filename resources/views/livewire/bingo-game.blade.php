@@ -7,10 +7,10 @@
                     {{ $nombre_bingo }}
                 </span>
             </div>
-            <div class="col-md-4 text-center">
+            <div class="col-md-2 col-lg-4 text-center logo_izq">
                 <img class="adingo11" src="{{ asset('images/adingo.png') }}" alt="">
             </div>
-            <div class="col-md-8">
+            <div class="col-12 col-lg-8 cartilla_general">
                 <div class="tit">
                     <img src="{{ asset('images/instructivo.png') }}" alt="">
                 </div>
@@ -62,7 +62,7 @@
                     *Nota: Las bolas resaltadas son las que ya han salido.
                 </p>
             </div>
-            <div class="col-md-4 d-flex justify-content-end">
+            <div class="col-md-3 col-lg-4 d-flex justify-content-end">
                 <div class="cartilla">
                     <div class="numbers">
                         <div class="number number_tit">

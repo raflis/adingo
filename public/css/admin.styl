@@ -170,7 +170,7 @@ img.adingo0
 
 .regresar-sala
     position absolute
-    top 40px
+    top 10px
     right 100px
     z-index 999
     i
@@ -180,7 +180,7 @@ img.adingo0
 
 .logout
     position absolute
-    top 40px
+    top 10px
     right 40px
     z-index 999
     i
@@ -576,6 +576,429 @@ img.adingo0
                 font-family font-bold
                 padding 1px 30px
 
-@media screen and (max-width:768px)
-    .gracias
-        color #fff
+@media screen and (max-width:1024px)
+
+    .logo_izq
+        display none
+    .cartilla_general
+        max-width 100% !important
+    img.logo
+        position absolute
+        top 40px
+        left 40px
+        height 50px
+
+    img.adingo0
+        position absolute
+        top 45px
+        right 40px
+        height 150px
+
+    .regresar-sala
+        position absolute
+        top 10px
+        right 100px
+        z-index 999
+        i
+            font-size 3rem
+            color #ef1414
+            text-shadow 0 0 1px #ef1414, 0 0 6px #ef1414, 0 0 2px #ef1414
+
+    .logout
+        position absolute
+        top 10px
+        right 40px
+        z-index 999
+        i
+            font-size 3rem
+            color #ef1414
+            text-shadow 0 0 1px #ef1414, 0 0 6px #ef1414, 0 0 2px #ef1414
+
+    .login
+        height 100vh
+        background-image url('../images/fondo2.jpg')
+        background-position center
+        background-size cover
+        background-repeat no-repeat
+        .main
+            height 100vh
+            align-items center
+            justify-content center
+            display flex
+            flex-wrap wrap
+            .formu
+                flex 1 1 auto
+                .image
+                    text-align center
+                    img.adingo
+                        width 80%
+                input.form-control
+                    background-color transparent !important
+                    border 4px solid #21f4f4
+                    border-radius 20px
+                    color #fff
+                    font-family font-italic
+                    font-size 1.1rem
+                    box-shadow 0 .2rem .2rem rgba(33,244,244,.7)!important
+                ::placeholder
+                    color #fff
+                    font-family font-italic
+                .btn-login
+                    background-color #21f4f4 !important
+                    border 4px solid #21f4f4
+                    border-radius 20px
+                    color #000
+                    font-family font-italic
+                    font-size 1rem
+            .terminos
+                display flex
+                padding-right 6px
+                align-items center
+                img
+                    height 40px
+                p
+                    color #00ffff
+                    font-size 1rem
+                    text-shadow 0 0 5px #fff, 0 0 30px #00ffff, 0 0 2px #00ffff
+                    margin 0
+
+    .ganador
+        height 100vh
+        background-image url('../images/fondo2.jpg')
+        background-position center
+        background-size cover
+        background-repeat no-repeat
+        .main
+            height 100vh
+            align-items center
+            justify-content center
+            display flex
+            flex-wrap wrap
+            flex-direction column
+            .text
+                display flex
+                flex-wrap wrap
+                flex-direction column
+                .image
+                    text-align center
+                    img.adingo
+                        width 300px
+                p
+                    color #00ffff
+                    text-shadow 0 0 1px #fff, 0 0 10px #00ffff, 0 0 2px #00ffff
+                    font-size 2.8rem
+                    text-align center
+                    margin 0
+                    line-height 1.3
+                    font-family font-extrabold
+                    span
+                        font-family font-regular
+                .nombre
+                    padding-top 40px
+                    padding-bottom 70px
+                    span
+                        color #FFF
+                        font-family font-extrabold
+                        font-size 3rem
+                        border-radius 30px
+                        border 5px solid #ef1414
+                        padding 15px 50px
+                        box-shadow 0 .1rem 1rem rgba(239,20,20,.7)!important
+                        text-shadow 0 0 1px #fff, 0 0 10px #fff, 0 0 2px #fff
+            .terminos
+                display flex
+                padding-right 6px
+                align-items center
+                img
+                    height 50px
+                p
+                    color #00ffff
+                    font-size 1rem
+                    text-shadow 0 0 5px #fff, 0 0 30px #00ffff, 0 0 2px #00ffff
+                    margin 0
+
+    .bingo
+        //height 120vh
+        background-image url('../images/fondo3.jpg')
+        background-position center
+        background-size cover
+        background-repeat no-repeat
+        .titulo_bingo_
+            padding 0 20%
+        span.titulo_bingo
+            text-transform uppercase
+            line-height 1.3
+            color #0ff
+            font-size 1.8rem
+            font-family font-medium
+            text-align center !important
+            padding 0
+            text-shadow 0 0 1px #fff, 0 0 10px #0ff, 0 0 2px #0ff
+            letter-spacing 7px
+        .row
+            height 120vh
+            align-content space-around
+        img.adingo11
+            display none
+        .tit
+            padding-left 60px
+            margin-top 120px
+            img
+                height 150px
+                margin-top -90px
+        .content
+            margin-top -40px
+            display flex
+            align-items center
+            position relative
+            img.line1
+                position absolute
+                height 250px
+                left 55px
+            .name
+                display flex
+                flex-direction column
+                .number_name
+                    height 40px
+                    width 100px
+                    text-align center
+                    span
+                        color #FFF
+                        font-size 1.5rem
+                        text-shadow 0 0 2px #fff, 0 0 3px #fff, 0 0 2px #fff
+                        font-family font-extrabold
+            .numbers
+                display flex
+                flex-wrap wrap
+                width 600px
+                .active
+                    background-color #00ffff
+                    span
+                        color #000 !important
+                .number
+                    height 40px
+                    width 40px
+                    display flex
+                    justify-content center
+                    align-items center
+                    border-right 1px solid rgba(255,255,255,.8)
+                    border-bottom 1px solid rgba(255,255,255,.8)
+                    span
+                        color #FFF
+                        font-size 1.5rem
+                        text-shadow 0 0 2px #fff, 0 0 3px #fff, 0 0 2px #fff
+                        font-family font-extrabold
+                .end_right
+                    border-right 0
+                .last_row
+                    border-bottom 0
+        p
+            color #00ffff
+            line-height 1.3
+            margin 0
+            font-size .8rem
+            text-align left
+            padding-left 120px
+            padding-left 90px
+            margin-top 18px
+        .cartilla
+            border 5px solid #00ffff
+            padding 3px
+            box-shadow 0 .1rem 1rem rgba(0,255,255,.7)!important
+            border-radius 25px
+            display flex
+            align-items center
+            flex-wrap wrap
+            justify-content center
+            width 300px
+            .image
+                text-align center
+                margin-top 0px
+                img
+                    width 220px
+            .numbers_v
+                display flex
+                flex-direction column
+                flex-wrap wrap
+                height 200px
+                width 200px
+                margin-top 0
+                .active
+                    background-color #00ffff
+                    span
+                        color #000 !important
+                .number_v
+                    cursor pointer
+                    height 40px
+                    width 40px
+                    display flex
+                    justify-content center
+                    align-items center
+                    border-right 1px solid rgba(255,255,255,.8)
+                    border-bottom 1px solid rgba(255,255,255,.8)
+                    span
+                        color #FFF
+                        font-size 1.4rem
+                        text-shadow 0 0 2px #fff, 0 0 3px #fff, 0 0 2px #fff
+                        font-family font-extrabold
+                        img.a
+                            height 40px
+                            width 40px
+                .end_right
+                    border-right 0
+                .last_row
+                    border-bottom 0
+            .numbers
+                display flex
+                flex-wrap wrap
+                margin-top 0px
+                width 200px
+                .active
+                    background-color #00ffff
+                    span
+                        color #000 !important
+                .number_tit
+                    border-right 0 !important
+                    border-bottom 0 !important
+                    border-bottom 2px solid rgba(255,255,255,.8) !important
+                    span
+                        color rgba(239, 20, 20, 1) !important
+                        text-shadow 0 0 2px #ef1414, 0 0 3px #ef1414, 0 0 2px #ef1414 !important
+                .number
+                    cursor pointer
+                    height 40px
+                    width 40px
+                    display flex
+                    justify-content center
+                    align-items center
+                    border-right 1px solid rgba(255,255,255,.8)
+                    border-bottom 1px solid rgba(255,255,255,.8)
+                    span
+                        color #FFF
+                        font-size 1.8rem
+                        text-shadow 0 0 2px #fff, 0 0 3px #fff, 0 0 2px #fff
+                        font-family font-extrabold
+                        img.a
+                            height 50px
+                            width 50px
+                .end_right
+                    border-right 0
+                .last_row
+                    border-bottom 0
+        .number_random_
+            display flex
+            flex-direction column
+            justify-content center
+            align-items center
+            .number_random
+                height 140px
+                width 140px
+                border-radius 50%
+                background-color transparent
+                border 0px solid rgba(255, 255, 255, .8)
+                display flex
+                align-items center
+                justify-content center
+                margin-bottom 20px
+                span
+                    color #FFF
+                    font-family font-extrabold
+                    font-size 4rem
+                    text-shadow 0 0 2px #fff, 0 0 3px #fff, 0 0 2px #fff
+            p.balota
+                margin 0
+                line-height 1.3
+                color #00ffff
+                font-size 1.6rem
+                font-family font-medium
+                text-align center !important
+                padding 0
+                text-shadow 0 0 1px #fff, 0 0 10px #0ff, 0 0 2px #0ff
+                letter-spacing 7px
+            .premio
+                margin-top 0px
+                img
+                    height 150px
+                .generando
+                    margin-left 1rem !important
+                    margin-top 0rem !important
+                    margin-bottom 0rem !important
+                .nombre
+                    margin-top 10px
+                    margin-bottom 10px
+                    cursor pointer
+                    button
+                        background-color transparent
+                        color #fff
+                        font-family font-extrabold
+                        font-size 1.3rem
+                        border-radius 30px
+                        border 5px solid #ef1414
+                        padding 5px 25px
+                        box-shadow 0 0.1rem 1rem rgba(239, 20, 20, .7) !important
+                        text-shadow 0 0 1px #fff, 0 0 10px #fff, 0 0 2px #fff
+                    button.mostrar_ganador
+                        background-color transparent
+                        color #fff
+                        font-family font-extrabold
+                        font-size 1rem
+                        border-radius 30px
+                        border 5px solid rgba(56, 194, 114, 1)
+                        padding 2px 20px
+                        box-shadow 0 0.1rem 1rem rgba(56, 194, 114, .7) !important
+                        text-shadow 0 0 1px #fff, 0 0 12px #fff, 0 0 1px #fff
+        .adingo_button_
+            display flex
+            flex-direction column
+            justify-content start
+            align-items center
+            .adingo_button
+                cursor pointer
+                height 220px
+                width 220px
+                border-radius 50%
+                background-color transparent
+                border 0px solid rgba(255, 255, 255, 1)
+                display flex
+                align-items center
+                justify-content center
+                margin-bottom 20px
+                img
+                    width 210px
+            .adingo_button_bottom
+                text-align center
+                img
+                    height 30px
+                p
+                    margin 0
+                    line-height 1.3
+                    color #00ffff
+                    font-size 1rem
+                    font-family font-medium
+                    text-align center !important
+                    padding 0
+                    text-shadow 0 0 1px #fff, 0 0 10px #0ff, 0 0 2px #0ff
+                    letter-spacing 7px
+        .ganador_user_
+            .ganador_user
+                p
+                    margin-bottom 50px
+                    line-height 1.3
+                    color #00ffff
+                    font-size 1.4rem
+                    font-family font-medium
+                    text-align center !important
+                    padding 0
+                    text-shadow 0 0 1px #fff, 0 0 10px #0ff, 0 0 2px #0ff
+                    letter-spacing 7px
+                    text-align center
+                    span
+                        font-family font-extrabold
+                button
+                    border-radius 12px
+                    background-color rgba(239, 20, 20, 1)
+                    border 0
+                    color #FFF
+                    font-size 1.1rem
+                    font-family font-bold
+                    padding 1px 30px

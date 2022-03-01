@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <p>
-                    *Nota: Las bolas resaltadas son las que ya han salido.
+                    *Nota: Los números resaltados son los que ya han salido.
                 </p>
             </div>
             <div class="col-md-3 col-lg-4 d-flex justify-content-end">

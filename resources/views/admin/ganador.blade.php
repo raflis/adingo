@@ -23,7 +23,7 @@
                         <img class="adingo" src="{{ asset('images/copa.png') }}" alt="">
                     </div>
                     <p>
-                        FELICIDADES AL GANADOR DEL BINGO <br>
+                        FELICIDADES, GANASTE EL ADINGO <br>
                         <span>"{{ $winner->bingo->name }}"</span>
                     </p>
                     <div class="nombre text-center">

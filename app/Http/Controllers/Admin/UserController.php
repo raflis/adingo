@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use Hash;
+use Excel;
 use Validator;
-use Illuminate\Http\Request;
 use App\Models\User;
+use App\Exports\UsersExport;
+use App\Imports\UsersImport;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class UserController extends Controller
@@ -22,9 +25,50 @@ class UserController extends Controller
         $this->middleware('isadmin');
     }
 
-    public function index()
+    public function excel_export(Request $request)
     {
-        $users = User::orderBy('id','Asc')->paginate();
+        $name = $request->get('name');
+        $lastname = $request->get('lastname');
+        $company = $request->get('company');
+
+        return Excel::download(new UsersExport($name, $lastname, $company),'usuarios-adingo.xlsx');
+    }
+
+    public function excel_import(Request $request)
+    {
+        $rules=[
+            'file_excel' => 'required|mimes:xlsx,xls',
+        ];
+
+        $messages=[
+            'file_excel.required' => 'Seleccione un archivo a importar',
+            'file_excel.mimes' => 'El archivo subido no es válido',
+        ];
+
+        $validator=Validator::make($request->all(), $rules, $messages);
+        if($validator->fails()):
+            return back()->withErrors($validator)->with('message','Se ha producido un error')->with('typealert','danger')->withInput();
+        else:
+            $file_excel = $request->file('file_excel');
+            if(Excel::import(new UsersImport, $file_excel)):
+                return redirect()->route('users.index')->with('message','Importación exitosa.')->with('typealert','success');
+            else:
+                return redirect()->route('users.index')->with('message','Importación fallida.')->with('typealert','danger');
+            endif;
+        endif;
+    }
+
+    public function index(Request $request)
+    {
+        $name = $request->get('name');
+        $lastname = $request->get('lastname');
+        $company = $request->get('company');
+
+        $users = User::orderBy('id','Asc')
+                        ->company($company)
+                        ->name($name)
+                        ->lastname($lastname)
+                        ->paginate(20);
         return view('admin.users.index', compact('users'));
     }
 
@@ -56,8 +100,8 @@ class UserController extends Controller
         $messages=[
             'name.required' => 'Ingrese un nombre',
             'lastname.required' => 'Ingrese un apellido',
-            'company.required' => 'Ingrese un email',
-            'email.required' => 'Ingrese una empresa',
+            'company.required' => 'Ingrese empresa',
+            'email.required' => 'Ingrese email',
             'email.unique' => 'Ya existe un usuario registrado con ese email',
         ];
 
@@ -114,8 +158,8 @@ class UserController extends Controller
         $messages=[
             'name.required' => 'Ingrese un nombre',
             'lastname.required' => 'Ingrese un apellido',
-            'company.required' => 'Ingrese un email',
-            'email.required' => 'Ingrese una empresa',
+            'company.required' => 'Ingrese empresa',
+            'email.required' => 'Ingrese email',
             'email.unique' => 'Ya existe un usuario registrado con ese email',
         ];
 

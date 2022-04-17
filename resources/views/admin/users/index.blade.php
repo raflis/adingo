@@ -21,14 +21,76 @@
                         <span>
                             Usuarios
                         </span>
-                        <a class="btn btn-success" href="{{ route('users.create') }}">
-                            <span class="icon">
-                                <i class="fas fa-plus px-2 py-1"></i>
-                            </span>
-                            <span class="text px-2 py-1">
-                                Crear
-                            </span>
-                        </a>
+                        <div class="d-flex align-items-center header_items">
+                            <div class="crear_descargar">
+                                <a class="btn btn-success" href="{{ route('users.create') }}">
+                                    <span class="icon">
+                                        <i class="fas fa-plus px-2 py-1"></i>
+                                    </span>
+                                    <span class="text px-2 py-1">
+                                        Crear
+                                    </span>
+                                </a>
+                                <a class="btn btn-success btn-descargar" href="{{ route('users.excel.export', ['name' => request('name'), 'lastname' => request('lastname'), 'company' => request('company')]) }}">
+                                    <span class="icon">
+                                        <i class="fas fa-download px-2 py-1"></i>
+                                    </span>
+                                    <span class="text px-2 py-1">
+                                        Descargar
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="importar">
+                                <form action="{{ route('users.excel.import') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="choose-file" class="custom-file-upload" id="choose-file-label">Seleccionar Excel</label>
+                                        <input name="file_excel" type="file" id="choose-file" accept=".xlsx, .xls" style="display: none;">
+                                    </div>
+                                    <button class="btn btn-info btn-importar" type="submit">
+                                        <span class="icon">
+                                            <i class="fas fa-upload px-2 py-1"></i>
+                                        </span>
+                                        <span class="text px-2 py-1">
+                                            Importar
+                                        </span>
+                                    </button>
+                                </form>
+                                <a class="btn btn-success btn-descargar" href="{{ asset('excel/template.xlsx') }}">
+                                    <span class="icon">
+                                        <i class="fas fa-file-excel px-2 py-1"></i>
+                                    </span>
+                                    <span class="text px-2 py-1">
+                                        Plantilla
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="card-body">
+                        <div class="buscar-descarga">
+                            <form class="row" action="{{ route('users.index') }}" method="GET" style="width:100%">
+                                <div class="form-group col-md-3 mb-0">
+                                    <label class="labelspan pr-1">Nombres:</label>
+                                    <input type="text" class="form-control" name="name" placeholder="Nombres" value="{{ request('name') }}">
+                                </div>
+                                <div class="form-group col-md-3 mb-0">
+                                    <label class="labelspan pr-1">Apellidos:</label>
+                                    <input type="text" class="form-control" name="lastname" placeholder="Apellido" value="{{ request('lastname') }}">
+                                </div>
+                                <div class="form-group col-md-3 mb-0">
+                                    <label class="labelspan pr-1">Empresa:</label>
+                                    <input type="text" class="form-control" name="company" placeholder="Empresa" value="{{ request('company') }}">
+                                </div>
+                                <div class="form-group col-md-3 mb-0">
+                                    <label class="labelspan pr-1"></label>
+                                    <button type="submit" class="btn btn-primary btn-buscar">
+                                        Buscar &nbsp;&nbsp;<i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                     <div class="px-3">
                         @include('admin.includes.alert')
@@ -114,6 +176,12 @@ $('document').ready(function(){
         $('#form-eliminar').attr('action', url);
         $('#deleting').modal('show');
     });
+
+    $('#choose-file').change(function () {
+		var i = $(this).prev('label').clone();
+		var file = $('#choose-file')[0].files[0].name;
+		$(this).prev('label').text(file);
+	});
 })
 </script>
 
